@@ -57,7 +57,7 @@ module "function_app" {
   postgres_user = "${module.database.postgres_user}@${module.database.server_name}"
   postgres_password = module.database.postgres_pass
   postgres_url = "jdbc:postgresql://${module.database.server_name}.postgres.database.azure.com:5432/prime_data_hub?sslmode=require"
-  okta_redirect_url = var.okta_redirect_url
+  #okta_redirect_url = var.okta_redirect_url
   login_server = module.container_registry.login_server
   admin_user = module.container_registry.admin_username
   admin_password = module.container_registry.admin_password

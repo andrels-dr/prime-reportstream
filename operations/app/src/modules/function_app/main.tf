@@ -29,19 +29,19 @@ resource "azurerm_function_app" "function_app" {
       service_tag = "AzureFrontDoor.Backend"
     }
 
-    ip_restriction {
-      action = "Allow"
-      name = "Ron IP"
-      priority = 120
-      ip_address = "165.225.48.87/31" # /31 is correct, can be 165.225.48.87 or 165.225.48.88
-    }
-
-    ip_restriction {
-      action = "Allow"
-      name = "Jim IP"
-      priority = 130
-      ip_address = "108.51.58.151/32"
-    }
+    #ip_restriction {
+    #  action = "Allow"
+    #  name = "Ron IP"
+    #  priority = 120
+    #  ip_address = "165.225.48.87/31" # /31 is correct, can be 165.225.48.87 or 165.225.48.88
+    #}
+    #
+    #ip_restriction {
+    #  action = "Allow"
+    #  name = "Jim IP"
+    #  priority = 130
+    #  ip_address = "108.51.58.151/32"
+    #}
 
     scm_use_main_ip_restriction = true
 
@@ -68,8 +68,8 @@ resource "azurerm_function_app" "function_app" {
 
     "PRIME_ENVIRONMENT" = (var.environment == "prod" ? "prod" : "test")
 
-    "OKTA_baseUrl" = "hhs-prime.okta.com"
-    "OKTA_redirect" = var.okta_redirect_url
+    #"OKTA_baseUrl" = "hhs-prime.okta.com"
+    #"OKTA_redirect" = var.okta_redirect_url
 
     # Manage client secrets via a Key Vault
     "CREDENTIAL_STORAGE_METHOD" ="AZURE"

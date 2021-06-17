@@ -28,10 +28,10 @@ variable "rsa_key_4096" {
     description = "Name of the 2048 length RSA key in the Key Vault. Omitting will use Azure-managed key instead of a customer-key."
 }
 
-variable "okta_redirect_url" {
-    type = string
-    description = "Okta Redirect URL"
-}
+#variable "okta_redirect_url" {
+#    type = string
+#    description = "Okta Redirect URL"
+#}
 
 variable "is_metabase_env" {
     type = bool

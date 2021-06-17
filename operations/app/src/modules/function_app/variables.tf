@@ -84,10 +84,10 @@ variable "ai_instrumentation_key" {
     sensitive = true
 }
 
-variable "okta_redirect_url" {
-    type = string
-    description = "Okta Redirect URL"
-}
+#variable "okta_redirect_url" {
+#    type = string
+#    description = "Okta Redirect URL"
+#}
 
 variable "app_config_key_vault_id" {
     type = string
