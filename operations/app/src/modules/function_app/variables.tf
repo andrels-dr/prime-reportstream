@@ -24,7 +24,6 @@ variable "ai_instrumentation_key" {
     sensitive = true
 }
 
-<<<<<<< HEAD
 #variable "okta_redirect_url" {
 #    type = string
 #    description = "Okta Redirect URL"
@@ -43,9 +42,9 @@ variable "client_config_key_vault_id" {
 variable "storage_partner_connection_string" {
     type = string
     description = "Storage account to export data with HHS Protect"
-=======
+}
+
 variable "okta_redirect_url" {
     type = string
     description = "Okta Redirect URL"
->>>>>>> origin/master
 }
