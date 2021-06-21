@@ -93,7 +93,7 @@ done
 #
 
 # Set default Azure subscription (and allow override)
-az account set -s ${AZ_SUBSCRIPTION_ID:-7d1e3999-6577-4cd5-b296-f518e5c8e677}
+az account set -s ${AZ_SUBSCRIPTION_ID:-72697d21-ec57-47c8-8998-1924b0ce0784}
 
 # If not set, we assume you're targetting 'dev'
 ENVIRONMENT="${ENVIRONMENT:-dev}"
