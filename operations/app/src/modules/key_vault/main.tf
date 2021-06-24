@@ -2,18 +2,8 @@ locals {
   # These object ids correspond to developers with access
   # to key vault
   dev_object_ids = [
-    # Richard Teasley
-    "34232fe8-00ad-4bd0-9afb-eb9b3cc93ffe",
-    # IAMB-Prod-KV
-    "cd341fbc-26a3-405c-a350-c4237a27aa93",
-    # Ron Heft
-    "637fb7df-c200-4e0d-ba86-608576acb786",
-    # Maurice Reeves
-    "414537da-0ba5-4db1-93f6-dd828e9a480a",
-    # Jim Duff
-    "24669a80-a2d3-425a-8c80-92e05ea8341f",
-    # Rick Hawes
-    "96c8ed83-c3df-4a04-9dfe-7cd8487e342e"
+    # André Luis dos Santos
+    "03416fdc-6138-47c2-b0f2-6ceaa5285902"
   ]
 
   frontdoor_object_id = "270e4d1a-12bd-4564-8a4b-c9de1bbdbe95"
@@ -32,7 +22,7 @@ resource "azurerm_key_vault" "application" {
 
   network_acls {
     bypass = "AzureServices"
-    default_action = "Deny"
+    default_action = "Allow" // For now it will be open as DR Waters doesn't have VPN
     virtual_network_subnet_ids = [] // We're using a private endpoint, so none need to be associated
   }
 
