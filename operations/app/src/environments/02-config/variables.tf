@@ -31,7 +31,7 @@ variable "rsa_key_4096" {
 variable "aad_group_postgres_admin" {
   type        = string
   description = "Azure Active Directory group id containing postgres db admins"
-  default     = "c4031f1f-229c-4a8a-b3b9-23bae9dbf197"
+  default     = "72697d21-ec57-47c8-8998-1924b0ce0784" //changed from c4031f1f-229c-4a8a-b3b9-23bae9dbf197
 }
 
 variable "is_metabase_env" {

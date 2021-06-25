@@ -13,7 +13,7 @@ resource "azurerm_postgresql_server" "postgres_server" {
 
   auto_grow_enabled = true
 
-  public_network_access_enabled = false
+  public_network_access_enabled = true
   ssl_enforcement_enabled = true
   ssl_minimal_tls_version_enforced = "TLS1_2"
 
@@ -40,15 +40,15 @@ resource "azurerm_postgresql_server" "postgres_server" {
   }
 }
 
-module "postgres_private_endpoint" {
-  source = "../common/private_endpoint"
-  resource_id = azurerm_postgresql_server.postgres_server.id
-  name = azurerm_postgresql_server.postgres_server.name
-  type = "postgres_server"
-  resource_group = var.resource_group
-  location = var.location
-  endpoint_subnet_id = data.azurerm_subnet.endpoint.id
-}
+#module "postgres_private_endpoint" {
+#  source = "../common/private_endpoint"
+#  resource_id = azurerm_postgresql_server.postgres_server.id
+#  name = azurerm_postgresql_server.postgres_server.name
+#  type = "postgres_server"
+#  resource_group = var.resource_group
+#  location = var.location
+#  endpoint_subnet_id = data.azurerm_subnet.endpoint.id
+#}
 
 
 // Replicate Server
@@ -69,7 +69,7 @@ resource "azurerm_postgresql_server" "postgres_server_replica" {
 
   auto_grow_enabled = true
 
-  public_network_access_enabled = false
+  public_network_access_enabled = true
   ssl_enforcement_enabled = true
   ssl_minimal_tls_version_enforced = "TLS1_2"
 
@@ -96,15 +96,15 @@ resource "azurerm_postgresql_server" "postgres_server_replica" {
   }
 }
 
-module "postgres_private_endpoint_replica" {
-  source = "../common/private_endpoint"
-  resource_id = azurerm_postgresql_server.postgres_server_replica.id
-  name = azurerm_postgresql_server.postgres_server_replica.name
-  type = "postgres_server"
-  resource_group = var.resource_group
-  location = azurerm_postgresql_server.postgres_server_replica.location
-  endpoint_subnet_id = data.azurerm_subnet.endpoint_replica.id
-}
+#module "postgres_private_endpoint_replica" {
+#  source = "../common/private_endpoint"
+#  resource_id = azurerm_postgresql_server.postgres_server_replica.id
+#  name = azurerm_postgresql_server.postgres_server_replica.name
+#  type = "postgres_server"
+#  resource_group = var.resource_group
+#  location = azurerm_postgresql_server.postgres_server_replica.location
+#  endpoint_subnet_id = data.azurerm_subnet.endpoint_replica.id
+#}
 
 
 // User Administration
@@ -121,7 +121,7 @@ resource "azurerm_postgresql_active_directory_administrator" "postgres_aad_admin
 // Encryption
 
 resource "azurerm_key_vault_access_policy" "postgres_policy" {
-  key_vault_id = data.azurerm_key_vault.application.id
+  key_vault_id = data.azurerm_key_vault.app_config.id //changed from .application
   tenant_id = data.azurerm_client_config.current.tenant_id
   object_id = azurerm_postgresql_server.postgres_server.identity.0.principal_id
 

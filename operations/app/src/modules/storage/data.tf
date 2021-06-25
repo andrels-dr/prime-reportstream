@@ -29,6 +29,6 @@ data "azurerm_key_vault" "application" {
 }
 
 data "azurerm_key_vault_secret" "hhsprotect_ip_ingress" {
-  name = "hhsprotect-ip-ingress"
+  name = "hhsprotect-ip-ingress" //set 0.0.0.0 for now
   key_vault_id = data.azurerm_key_vault.application.id
 }

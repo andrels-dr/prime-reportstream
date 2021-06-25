@@ -22,7 +22,7 @@ resource "azurerm_key_vault" "application" {
 
   network_acls {
     bypass = "AzureServices"
-    default_action = "Allow" // For now it will be open as DR Waters doesn't have VPN
+    default_action = "Allow" // For now it will be open as DR Waters doesn't have VPN currently
     virtual_network_subnet_ids = [] // We're using a private endpoint, so none need to be associated
   }
 
@@ -91,15 +91,15 @@ resource "azurerm_key_vault_access_policy" "frontdoor_access_policy" {
   certificate_permissions = [ "Get" ]
 }
 
-module "application_private_endpoint" {
-  source = "../common/private_endpoint"
-  resource_id = azurerm_key_vault.application.id
-  name = azurerm_key_vault.application.name
-  type = "key_vault"
-  resource_group = var.resource_group
-  location = var.location
-  endpoint_subnet_id = data.azurerm_subnet.endpoint.id
-}
+#module "application_private_endpoint" {
+#  source = "../common/private_endpoint"
+#  resource_id = azurerm_key_vault.application.id
+#  name = azurerm_key_vault.application.name
+#  type = "key_vault"
+#  resource_group = var.resource_group
+#  location = var.location
+#  endpoint_subnet_id = data.azurerm_subnet.endpoint.id
+#}
 
 resource "azurerm_key_vault" "app_config" {
   name = "${var.resource_prefix}-appconfig" # Does not include "-keyvault" due to char limits (24)
@@ -114,7 +114,7 @@ resource "azurerm_key_vault" "app_config" {
 
   network_acls {
     bypass = "AzureServices"
-    default_action = "Deny"
+    default_action = "Allow" // For now it will be open as DR Waters doesn't have VPN currently
     virtual_network_subnet_ids = [] // We're using a private endpoint, so none need to be associated
   }
 
@@ -133,7 +133,17 @@ resource "azurerm_key_vault_access_policy" "dev_app_config_access_policy" {
   tenant_id = data.azurerm_client_config.current.tenant_id
   object_id = local.dev_object_ids[count.index]
 
-  key_permissions = []
+  key_permissions = [
+    "Get",
+    "List",
+    "Update",
+    "Create",
+    "Import",
+    "Delete",
+    "Recover",
+    "Backup",
+    "Restore"
+  ]
 
   secret_permissions = [
     "Get",
@@ -148,15 +158,15 @@ resource "azurerm_key_vault_access_policy" "dev_app_config_access_policy" {
   certificate_permissions = []
 }
 
-module "app_config_private_endpoint" {
-  source = "../common/private_endpoint"
-  resource_id = azurerm_key_vault.app_config.id
-  name = azurerm_key_vault.app_config.name
-  type = "key_vault"
-  resource_group = var.resource_group
-  location = var.location
-  endpoint_subnet_id = data.azurerm_subnet.endpoint.id
-}
+#module "app_config_private_endpoint" {
+#  source = "../common/private_endpoint"
+#  resource_id = azurerm_key_vault.app_config.id
+#  name = azurerm_key_vault.app_config.name
+#  type = "key_vault"
+#  resource_group = var.resource_group
+#  location = var.location
+#  endpoint_subnet_id = data.azurerm_subnet.endpoint.id
+#}
 
 resource "azurerm_key_vault" "client_config" {
   name = "${var.resource_prefix}-clientconfig" # Does not include "-keyvault" due to char limits (24)
@@ -171,7 +181,7 @@ resource "azurerm_key_vault" "client_config" {
 
   network_acls {
     bypass = "AzureServices"
-    default_action = "Deny"
+    default_action = "Allow" // For now it will be open as DR Waters doesn't have VPN currently
     virtual_network_subnet_ids = [] // We're using a private endpoint, so none need to be associated
   }
 
@@ -205,12 +215,12 @@ resource "azurerm_key_vault_access_policy" "dev_client_config_access_policy" {
   certificate_permissions = []
 }
 
-module "client_config_private_endpoint" {
-  source = "../common/private_endpoint"
-  resource_id = azurerm_key_vault.client_config.id
-  name = azurerm_key_vault.client_config.name
-  type = "key_vault"
-  resource_group = var.resource_group
-  location = var.location
-  endpoint_subnet_id = data.azurerm_subnet.endpoint.id
-}
+#module "client_config_private_endpoint" {
+#  source = "../common/private_endpoint"
+#  resource_id = azurerm_key_vault.client_config.id
+#  name = azurerm_key_vault.client_config.name
+#  type = "key_vault"
+#  resource_group = var.resource_group
+#  location = var.location
+#  endpoint_subnet_id = data.azurerm_subnet.endpoint.id
+#}

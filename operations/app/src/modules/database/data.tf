@@ -33,7 +33,7 @@ data "azurerm_key_vault" "app_config" {
 
 data "azurerm_key_vault_secret" "postgres_user" {
   key_vault_id = data.azurerm_key_vault.app_config.id
-  name = "functionapp-postgres-user"
+  name = "functionapp2-postgres-user" //included 2 in the name for now due to an error
 }
 
 data "azurerm_key_vault_secret" "postgres_pass" {
@@ -46,7 +46,7 @@ data "azurerm_key_vault_secret" "postgres_pass" {
 
 data "azurerm_key_vault_key" "postgres_server_encryption_key" {
   count = var.rsa_key_2048 != null && var.rsa_key_2048 != "" ? 1 : 0
-  key_vault_id = data.azurerm_key_vault.application.id
+  key_vault_id = data.azurerm_key_vault.app_config.id
   name = var.rsa_key_2048
 
   depends_on = [azurerm_key_vault_access_policy.postgres_policy]
