@@ -9,7 +9,7 @@ resource "azurerm_storage_account" "storage_account" {
   enable_https_traffic_only = true
 
   network_rules {
-    default_action = "Deny"
+    default_action = "Allow" // Changed from Deny
     ip_rules = []
     virtual_network_subnet_ids = [
       data.azurerm_subnet.public.id,

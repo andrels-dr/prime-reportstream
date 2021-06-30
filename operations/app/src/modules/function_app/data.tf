@@ -32,10 +32,10 @@ data "azurerm_key_vault" "client_config" {
   resource_group_name = var.resource_group
 }
 
-data "azurerm_key_vault_secret" "pagerduty_url" {
-  key_vault_id = data.azurerm_key_vault.application.id
-  name = "pagerduty-integration-url"
-}
+#data "azurerm_key_vault_secret" "pagerduty_url" {
+#  key_vault_id = data.azurerm_key_vault.application.id
+#  name = "pagerduty-integration-url"
+#}
 
 
 // Storage Account
@@ -60,7 +60,7 @@ data "azurerm_postgresql_server" "postgres_server" {
 
 data "azurerm_key_vault_secret" "postgres_user" {
   key_vault_id = data.azurerm_key_vault.app_config.id
-  name = "functionapp-postgres-user"
+  name = "functionapp2-postgres-user"
 }
 
 data "azurerm_key_vault_secret" "postgres_pass" {

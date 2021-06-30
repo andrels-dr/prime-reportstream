@@ -95,9 +95,9 @@ resource "azurerm_monitor_autoscale_setting" "app_autoscale" {
     }
   }
 
-  notification {
-    webhook {
-      service_uri = data.azurerm_key_vault_secret.pagerduty_url.value
-    }
-  }
+  #notification {
+  #  webhook {
+  #    service_uri = data.azurerm_key_vault_secret.pagerduty_url.value
+  #  }
+  #}
 }

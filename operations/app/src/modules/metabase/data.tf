@@ -32,7 +32,7 @@ data "azurerm_postgresql_server" "postgres_server" {
 
 data "azurerm_key_vault_secret" "postgres_user" {
   key_vault_id = data.azurerm_key_vault.app_config.id
-  name = "functionapp-postgres-user"
+  name = "functionapp2-postgres-user"
 }
 
 data "azurerm_key_vault_secret" "postgres_pass" {
