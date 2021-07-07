@@ -2,7 +2,7 @@ name: Release to Azure
 
 on:
   push:
-    branches: [ master, production, dev-rheft ]
+    branches: [ master, dev-env ]
 
 defaults:
   run:
