@@ -2,7 +2,7 @@ name: Router
 
 on:
   pull_request:
-    branches: [ master, production ]
+    branches: [ master, dev-env ]
 
 jobs:
   pre_job:
