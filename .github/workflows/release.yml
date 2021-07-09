@@ -50,28 +50,28 @@ jobs:
           path: prime-router/build
           retention-days: 7
 
-  #build_frontend_release:
-  #  name: "Release: Build Frontend"
-  #  runs-on: ubuntu-latest
-  #  defaults:
-  #    run:
-  #      working-directory: frontend
-  #
-  #  steps:
-  #    - uses: actions/checkout@v2
-  #
-  #    - name: Run Build Script
-  #      run: bash ci_build.bash
-  #
-  #    - name: Save Static Website
-  #      uses: actions/upload-artifact@v2
-  #      with:
-  #        name: static_website-${{ github.run_id }}
-  #        path: frontend/dist
-  #        retention-days: 7
-  #
-  #    - name: Validate static website server
-  #      run: bash ci_validate.bash
+  build_frontend_release:
+    name: "Release: Build Frontend"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+  
+    steps:
+      - uses: actions/checkout@v2
+  
+      - name: Run Build Script
+        run: bash ci_build.bash
+  
+      - name: Save Static Website
+        uses: actions/upload-artifact@v2
+        with:
+          name: static_website-${{ github.run_id }}
+          path: frontend/dist
+          retention-days: 7
+  
+      - name: Validate static website server
+        run: bash ci_validate.bash
 
   deploy_release_dev:
     name: "Deploy Release: DEV"
@@ -101,11 +101,11 @@ jobs:
       - name: Build Docker Image
         run: docker build . --file Dockerfile --tag ${{ env.ACR_REPO }}/${{ env.PREFIX }}:latest
 
-      - name: Install OpenVPN
-        run: |
-          sudo apt-get update
-          sudo apt-get install openvpn
-          sudo apt install openvpn-systemd-resolved
+      #- name: Install OpenVPN
+      #  run: |
+      #    sudo apt-get update
+      #    sudo apt-get install openvpn
+      #    sudo apt install openvpn-systemd-resolved
 
       #- name: Connect VPN
       #  uses: golfzaptw/action-connect-ovpn@master
