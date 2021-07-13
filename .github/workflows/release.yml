@@ -82,7 +82,7 @@ jobs:
     env:
       RESOURCE_GROUP: Waters
       ACR_REPO: pdhdevcontainerregistry.azurecr.io
-      PREFIX: phddev
+      PREFIX: pddev
     steps:
       - uses: actions/checkout@v2
 
