@@ -3,12 +3,12 @@ package gov.cdc.prime.router.azure
 import com.okta.jwt.JwtVerifiers
 
 // These constants match how PRIME Okta subscription is configured
-const val oktaGroupPrefix = "DH"
-const val oktaAdminGroupSuffix = "Admins"
-const val oktaSystemAdminGroup = "DHPrimeAdmins"
-const val oktaSubjectClaim = "sub"
-const val oktaMembershipClaim = "organization"
-const val envVariableForOktaBaseUrl = "OKTA_baseUrl"
+//const val oktaGroupPrefix = "DH"
+//const val oktaAdminGroupSuffix = "Admins"
+//const val oktaSystemAdminGroup = "DHPrimeAdmins"
+//const val oktaSubjectClaim = "sub"
+//const val oktaMembershipClaim = "organization"
+//const val envVariableForOktaBaseUrl = "OKTA_baseUrl"
 
 enum class PrincipalLevel {
     SYSTEM_ADMIN,

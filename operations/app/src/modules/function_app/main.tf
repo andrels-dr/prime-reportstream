@@ -39,7 +39,7 @@ resource "azurerm_function_app" "function_app" {
     #  ip_address = "108.51.58.151/32"
     #}
 
-    scm_use_main_ip_restriction = true
+    scm_use_main_ip_restriction = false #it was true
 
     http2_enabled = true
     always_on = true
@@ -49,10 +49,10 @@ resource "azurerm_function_app" "function_app" {
     cors {
       allowed_origins = [
         "https://${var.resource_prefix}public.z13.web.core.windows.net",
-        "https://prime.cdc.gov",
-        "https://${var.environment}.prime.cdc.gov",
-        "https://reportstream.cdc.gov",
-        "https://${var.environment}.reportstream.cdc.gov",
+        #"https://prime.cdc.gov",
+        #"https://${var.environment}.prime.cdc.gov",
+        #"https://reportstream.cdc.gov",
+        #"https://${var.environment}.reportstream.cdc.gov",
       ]
     }
   }
