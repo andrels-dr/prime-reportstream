@@ -25,6 +25,20 @@ resource "azurerm_function_app" "function_app" {
       service_tag = "AzureFrontDoor.Backend"
     }
 
+    ip_restriction {
+      action = "Allow"
+      name = "andre-AllowAccess"
+      priority = 101
+      ip_address = "201.82.32.79/32"
+    }
+
+    ip_restriction {
+      action = "Allow"
+      name = "PK"
+      priority = 101
+      ip_address = "137.83.250.38/32"
+    }
+
     #ip_restriction {
     #  action = "Allow"
     #  name = "Ron IP"
