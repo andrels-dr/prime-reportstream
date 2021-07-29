@@ -34,7 +34,8 @@ open class Receiver(
     val deidentify: Boolean = false,
     val timing: Timing? = null,
     val description: String = "",
-    val transport: TransportType? = null
+    val transport: TransportType? = null,
+    val externalName: String? = null,
 ) {
     // Custom constructor
     constructor(
@@ -59,7 +60,8 @@ open class Receiver(
         copy.deidentify,
         copy.timing,
         copy.description,
-        copy.transport
+        copy.transport,
+        copy.externalName,
     )
 
     @get:JsonIgnore
@@ -68,6 +70,9 @@ open class Receiver(
     val schemaName: String get() = translation.schemaName
     @get:JsonIgnore
     val format: Report.Format get() = translation.format
+    // adds a display name property that tries to show the external name, or the regular name if there isn't one
+    @get:JsonIgnore
+    val displayName: String get() = externalName ?: name
 
     /**
      * Defines how batching of sending should proceed. Allows flexibility of
