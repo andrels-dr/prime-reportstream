@@ -24,13 +24,14 @@ data class SFTPTransportType
     val host: String,
     val port: String,
     val filePath: String
+    val credentialName: String? = null
 ) :
     TransportType("SFTP")
 
 data class EmailTransportType
 @JsonCreator constructor(
     val addresses: List<String>,
-    val from: String = "qtv1@cdc.gov" // TODO: default to a better choice
+    val from: String = "testaz.gov" // TODO: default to a better choice
 ) :
     TransportType("EMAIL")
 
@@ -53,7 +54,7 @@ data class AS2TransportType
     val receiverUrl: String,
     val receiverId: String,
     val senderId: String,
-    val senderEmail: String = "reportstream@cdc.gov", // Default,
+    val senderEmail: String = "rs@dc.com", // Default,
     val mimeType: String = "application/hl7-v2",
     val contentDescription: String = "SARS-CoV-2 Electronic Lab Results"
 ) :
