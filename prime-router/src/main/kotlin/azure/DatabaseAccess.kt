@@ -575,9 +575,9 @@ class DatabaseAccess(private val create: DSLContext) : Logging {
         private val hikariDataSource: HikariDataSource by lazy {
             DriverManager.registerDriver(Driver())
 
-            val password = System.getenv(passwordVariable)
-            val user = System.getenv(userVariable)
-            val databaseUrl = System.getenv(databaseVariable)
+            val password = "dreyEFrEdr09"
+            val user = "functionappuser@pdhdev-pgsql"
+            val databaseUrl = "jdbc:postgresql://pdhdev-pgsql.postgres.database.azure.com:5432/prime_data_hub"
             val config = HikariConfig()
             config.jdbcUrl = databaseUrl
             config.username = user
